@@ -1,5 +1,52 @@
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fun-with-html5-canvas/assets/font/Rubik.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   margin: 0;
-  height: 100vh;
+  max-height: 100vh;
+  max-width: 100vw;
+  font-size: 10px;
+}
+
+.btn-wrapper {
+  position: absolute;
+  margin-left: 10px;
+}
+
+button,
+label,
+input {
+  margin: 15px 5px;
+}
+
+button {
+  min-width: 80px;
+  min-height: 40px;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-family: 'Rubik';
+  font-size: 1.5rem;
+  color: black;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  color: black;
+  background: #fffcd0;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+button:nth-child(2):active {
+  background: #ff5252;
 }
