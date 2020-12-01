@@ -40,6 +40,7 @@ label {
   font-family: 'Rubik';
   font-size: 2rem;
   color: black;
+  user-select: none;
 }
 
 button:nth-child(1):hover {
@@ -49,6 +50,11 @@ button:nth-child(1):hover {
 
 button:nth-child(2):hover {
   color: white;
+  background: deepskyblue;
+}
+
+button:nth-child(3):hover {
+  color: white;
   background: red;
 }
 
@@ -56,7 +62,12 @@ button:active {
   transform: scale(0.95);
 }
 
-.active {
+.active:nth-child(1) {
   color: white;
   background: orange;
+}
+
+.active:nth-child(2) {
+  color: white;
+  background: deepskyblue;
 }
