@@ -13,7 +13,7 @@ body {
   font-size: 10px;
 }
 
-.btn-wrapper {
+.settings-wrapper {
   position: absolute;
   margin-left: 10px;
 }
@@ -25,28 +25,38 @@ input {
 }
 
 button {
-  min-width: 80px;
+  min-width: 120px;
   min-height: 40px;
   background: none;
   border: 2px solid black;
   border-radius: 10px;
-  font-family: 'Rubik';
-  font-size: 1.5rem;
-  color: black;
   outline: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
-button:hover {
+button,
+label {
+  font-family: 'Rubik';
+  font-size: 2rem;
   color: black;
-  background: #fffcd0;
+}
+
+button:nth-child(1):hover {
+  color: white;
+  background: orange;
+}
+
+button:nth-child(2):hover {
+  color: white;
+  background: red;
 }
 
 button:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
 }
 
-button:nth-child(2):active {
-  background: #ff5252;
+.active {
+  color: white;
+  background: orange;
 }
