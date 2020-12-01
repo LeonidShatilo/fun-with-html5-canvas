@@ -1,7 +1,8 @@
 const canvas = document.querySelector('#draw'),
       context = canvas.getContext('2d'),
       rainbow = document.getElementById('rainbow'),
-      clear = document.getElementById('clear');
+      clear = document.getElementById('clear'),
+      color = document.getElementById('color');
 canvas.width = window.innerWidth; // Browser window width
 canvas.height = window.innerHeight; // Browser window height
 context.lineJoin = 'round'; // Angle type created by intersection of two lines
@@ -15,15 +16,19 @@ let isDrawing = false,
     lastY = 0,
     colorTone = 0;
 
-function draw(e) {
-  if (!isDrawing) return; // Stop the function from running when the mouse is up
-
+function setColor() {
   if (isRainbow) {
     context.strokeStyle = `hsl(${colorTone}, 100%, 50%)`;
     colorTone++; // Change the color tone
   } else {
-    context.strokeStyle = 'black';
+    context.strokeStyle = color.value; // Get color from input
   }
+}
+
+function draw(e) {
+  if (!isDrawing) return; // Stop the function from running when the mouse is up
+
+  setColor(); // Starting the function to set the color
 
   context.beginPath(); // Begin path
   context.moveTo(lastX, lastY); // Start from
@@ -38,9 +43,9 @@ function draw(e) {
     isAccrual = !isAccrual;
   }
   if (isAccrual) {
-    context.lineWidth++;
+    context.lineWidth++; // Increase the width of the line
   } else {
-    context.lineWidth--;
+    context.lineWidth--; // Reduce the width of the line
   }
 }
 
@@ -54,9 +59,13 @@ canvas.addEventListener('mouseout', () => (isDrawing = false));
 
 rainbow.addEventListener('click', () => {
   isRainbow = !isRainbow;
-  isRainbow ? (rainbow.innerText = 'Black') : (rainbow.innerText = 'Rainbow');
+  isRainbow ? rainbow.classList.add('active') : rainbow.classList.remove('active');
 });
 
 clear.addEventListener('click', () => {
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  let isClear = confirm('Are you sure you want to clear the canvas?');
+  isClear ? context.clearRect(0, 0, canvas.width, canvas.height) : '';
 });
+
+color.addEventListener('input', setColor);
+color.addEventListener('click', () => (isRainbow = false));
