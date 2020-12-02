@@ -1,10 +1,10 @@
 const canvas = document.querySelector('#draw'),
       context = canvas.getContext('2d'),
-      rainbow = document.getElementById('rainbow'),
-      clear = document.getElementById('clear'),
-      color = document.getElementById('color'),
-      width = document.getElementById('width'),
-      wave = document.getElementById('wave');
+      rainbowButton = document.getElementById('rainbow'),
+      waveButton = document.getElementById('wave'),
+      clearButton = document.getElementById('clear'),
+      colorInput = document.getElementById('color'),
+      widthInput = document.getElementById('width');
 canvas.width = window.innerWidth; // Browser window width
 canvas.height = window.innerHeight; // Browser window height
 context.lineJoin = 'round'; // Angle type created by intersection of two lines
@@ -14,7 +14,7 @@ context.lineWidth = 10; // Line width
 let isDrawing = false,
     isAccrual = true,
     isRainbow = false,
-    isWave = false;
+    isWave = false,
     lastX = 0,
     lastY = 0,
     colorTone = 0;
@@ -24,7 +24,7 @@ function setLineColor() {
     context.strokeStyle = `hsl(${colorTone}, 100%, 50%)`;
     colorTone++; // Change the color tone
   } else {
-    context.strokeStyle = color.value; // Get color from input
+    context.strokeStyle = colorInput.value; // Get color from input
   }
   if (colorTone >= 360) {
     colorTone = 0;
@@ -33,9 +33,11 @@ function setLineColor() {
 
 function setLineWidth() {
   if (isWave) {
-    if (context.lineWidth >= 100 || context.lineWidth <= 10) {
-    context.lineWidth <= 10 && context.lineWidth > 0 ? (isAccrual = true) : (isAccrual = false);
-    context.lineWidth >= 100 ? (isAccrual = false) : (isAccrual = true);
+    if (context.lineWidth > 0 && context.lineWidth <= 10) {
+      isAccrual = true;
+    }
+    if (context.lineWidth >= 100) {
+      isAccrual = false;
     }
     if (isAccrual) {
       context.lineWidth++; // Increase the width of the line
@@ -43,9 +45,9 @@ function setLineWidth() {
       context.lineWidth--; // Reduce the width of the line
     }
   } else {
-    context.lineWidth = width.value;
+    context.lineWidth = widthInput.value;
   }
-  document.getElementById('px').innerHTML = `${width.value}px`;
+  document.getElementById('px').innerHTML = `${widthInput.value}px`;
 }
 
 function draw(e) {
@@ -67,29 +69,29 @@ canvas.addEventListener('mousedown', (e) => {
 canvas.addEventListener('mouseup', () => (isDrawing = false));
 canvas.addEventListener('mouseout', () => (isDrawing = false));
 
-rainbow.addEventListener('click', () => {
+rainbowButton.addEventListener('click', () => {
   isRainbow = !isRainbow;
-  isRainbow ? rainbow.classList.add('active') : rainbow.classList.remove('active');
+  rainbowButton.classList.toggle('active');
 });
 
-wave.addEventListener('click', () => {
+waveButton.addEventListener('click', () => {
   isWave = !isWave;
-  isWave ? wave.classList.add('active') : wave.classList.remove('active');
+  wave.classList.toggle('active');
 });
 
-clear.addEventListener('click', () => {
+clearButton.addEventListener('click', () => {
   let isClear = confirm('Are you sure you want to clear the canvas?');
-  isClear ? context.clearRect(0, 0, canvas.width, canvas.height) : '';
+  isClear && context.clearRect(0, 0, canvas.width, canvas.height);
 });
 
-color.addEventListener('input', setLineColor);
-color.addEventListener('click', () => {
+colorInput.addEventListener('input', setLineColor);
+colorInput.addEventListener('click', () => {
   isRainbow = false;
-  rainbow.classList.remove('active');
+  rainbowButton.classList.remove('active');
 });
 
-width.addEventListener('change', () => {
+widthInput.addEventListener('input', setLineWidth);
+widthInput.addEventListener('change', () => {
   isWave = false;
-  wave.classList.remove('active');
+  waveButton.classList.remove('active');
 });
-width.addEventListener('input', setLineWidth);
