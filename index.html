@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/fun-with-html5-canvas/src/main.css" />
+    <title>HTML5 Canvas</title>
+  </head>
+  <body>
+    <div class="settings-wrapper">
+      <button id="rainbow">Rainbow</button>
+      <button id="wave">Wave</button>
+      <button id="clear">Clear</button>
+      <label for="color">Line color:</label>
+      <input id="color" type="color" />
+      <label for="width">Line width:</label>
+      <input
+        id="width"
+        type="range"
+        name="width"
+        min="1"
+        max="100"
+        value="10"
+      />
+      <label id="px">10px</label>
+    </div>
+    <canvas id="draw" width="800" height="800"></canvas>
+    <script src="/fun-with-html5-canvas/src/script.js"></script>
+  </body>
+</html>

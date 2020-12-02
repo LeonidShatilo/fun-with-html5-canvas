@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fun-with-html5-canvas/assets/font/Rubik.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  margin: 0;
+  max-height: 100vh;
+  max-width: 100vw;
+  font-size: 10px;
+}
+
+.settings-wrapper {
+  position: absolute;
+  margin-left: 10px;
+}
+
+button,
+label,
+input {
+  margin: 15px 5px;
+}
+
+button {
+  min-width: 120px;
+  min-height: 40px;
+  background: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button,
+label {
+  font-family: 'Rubik';
+  font-size: 2rem;
+  color: black;
+  user-select: none;
+}
+
+#rainbow:hover {
+  color: white;
+  background: orange;
+}
+
+#wave:hover {
+  color: white;
+  background: deepskyblue;
+}
+
+#clear:hover {
+  color: white;
+  background: red;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+#rainbow.active {
+  color: white;
+  background: orange;
+}
+
+#wave.active {
+  color: white;
+  background: deepskyblue;
+}
